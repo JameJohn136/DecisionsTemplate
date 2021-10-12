@@ -12,6 +12,13 @@ namespace Decisions
 {
     public partial class Form1 : Form
     {
+        int age;
+        double hoursWorked;
+        double normalHours;
+        double overtimeHours;
+        int numOne;
+        int numTwo;
+        int year;
         public Form1()
         {
             InitializeComponent();
@@ -22,7 +29,15 @@ namespace Decisions
             /// Create an if statement to check age and display a 
             /// message stating "You can drive now" if age is 16. 
             /// If not 16 then display, "You are not 16".
-          
+            age = Convert.ToInt32(ageInput.Text);
+
+            if (age >= 16)
+            {
+                driveOutput.Text = "You can Drive now";
+            } else
+            {
+                driveOutput.Text = "No driving for you, you are not 16";
+            }
 
         }
 
@@ -32,8 +47,16 @@ namespace Decisions
             /// that variable to determine if the person is old 
             /// enough to vote. Display an appropriate message based
             /// on whether they can or can't vote            
-           
 
+            age = Convert.ToInt32(ageInput.Text);
+
+            if (age >= 18)
+            {
+                voteOutput.Text = "You can vote";
+            } else
+            {
+                voteOutput.Text = "You cannot vote";
+            }
         }
 
         private void workButton_Click(object sender, EventArgs e)
@@ -48,8 +71,21 @@ namespace Decisions
             /// 
             /// Sample output for 45 hours:
             /// You worked 40 hours plus 5 hours overtime
+            /// 
 
-      
+            normalHours = 40;
+            hoursWorked = Convert.ToInt32(hoursInput.Text);
+            
+            if (hoursWorked > normalHours)
+            {
+                overtimeHours = hoursWorked - normalHours;
+                workOutput.Text = $"You worked {normalHours} hours and {overtimeHours} hours over time";
+            } else if (hoursWorked <= normalHours)
+            {
+                workOutput.Text = $"You worked {hoursWorked} hours";
+            }
+
+
 
         }
 
@@ -64,7 +100,16 @@ namespace Decisions
             /// 
             /// Sample output for inputs 22, 77
             /// The max value is: 77
-            
+            numOne = Convert.ToInt32(num1Input.Text);
+            numTwo = Convert.ToInt32(num2Input.Text);
+
+            if (numOne > numTwo)
+            {
+                maxOutput.Text = $"The Max value is: {numOne}";
+            } else if (numOne < numTwo)
+            {
+                maxOutput.Text = $"The Max value is: {numTwo}";
+            }
 
         }
 
@@ -78,7 +123,24 @@ namespace Decisions
             /// 
             /// Sample output for inputs 2016
             /// 2016 is a leap year
-           
+
+            // Can be divided by 100 and 400
+            year = Convert.ToInt32(yearInput.Text);
+
+
+            if (DateTime.IsLeapYear(year))
+                {
+                yearOutput.Text = $"{year} is a leap year";
+                } else
+            {
+                yearOutput.Text = $"{year} is NOT a leap year";
+            }
+            
+            
+        }
+
+        private void driveOutput_Click(object sender, EventArgs e)
+        {
 
         }
     }
